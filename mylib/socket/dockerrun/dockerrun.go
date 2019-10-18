@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"github.com/Equanox/gotron"
-	"github.com/uieviiru/test/mylib/docker"
-	"github.com/uieviiru/test/mylib/jsonedit"
+	"github.com/uieviiru2/mylib/docker"
+	"github.com/uieviiru2/mylib/jsonedit"
 )
 
 type dockerRunStruct struct {

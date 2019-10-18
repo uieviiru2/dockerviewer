@@ -7,10 +7,10 @@ import (
 
 	"github.com/Equanox/gotron"
 
-	"github.com/uieviiru/test/mylib/docker"
-	"github.com/uieviiru/test/mylib/jsonedit"
-	"github.com/uieviiru/test/mylib/socket/config"
-	"github.com/uieviiru/test/mylib/socket/configserver"
+	"github.com/uieviiru2/mylib/docker"
+	"github.com/uieviiru2/mylib/jsonedit"
+	"github.com/uieviiru2/mylib/socket/config"
+	"github.com/uieviiru2/mylib/socket/configserver"
 )
 
 type dockerID struct {

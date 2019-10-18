@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>docker-viewer</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="./adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./adminlte/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./adminlte/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="./adminlte/dist/css./adminlte.min.css">
+  <link rel="stylesheet" href="./adminlte/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="./jquery.json-viewer/json-viewer/jquery.json-viewer.css">
+  <script src="./js/common.js"></script>
+  <style>
+  .originalFileBtn {
+    border: 3px solid;
+    display: inline-block;
+    padding: 2px 1em;
+    position: relative;
+}
+.originalFileBtn input[type="file"] {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+  </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    <a href="./index.html?page=start" class="logo">
+      <span class="logo-lg">docker-viewer</span>
+    </a>
+    <nav class="navbar navbar-static-top">
+    </nav>
+  </header>
+  <!-- =============================================== -->
+  <aside class="main-sidebar">
+    <section class="sidebar">
+    <ul class="sidebar-menu" data-widget="tree">
+        <li class="header level1" style="color:#FFFFFF;"><b>docker</b></li>
+        <li class="level1"><a href="#" onclick="view('start');"><i class="fa fa-th"></i> <span>Dashbord</span></a></li>
+        <li class="level1"><a href="#" onclick="view('dockerrun');"><i class="fa fa-th"></i> <span>docker run</span></a></li>
+        <li class="level1"><a href="#" onclick="view('dockerpull');"><i class="fa fa-th"></i> <span>docker pull</span></a></li>
+        <li class="level1"><a href="#" onclick="view('dockerfile');"><i class="fa fa-th"></i> <span>dockerfile</span></a></li>
+        <li class="level1"><a href="#" onclick="view('dockercompose');"><i class="fa fa-th"></i> <span>docker compose</span></a></li>
+        <li class="level1"><a href="#" onclick="view('dockerimagedeploy');"><i class="fa fa-th"></i> <span>docker deploy</span></a></li>
+
+        <li class="header" style="color:#FFFFFF;"><b>config</b></li>
+        <li><a href="#" onclick="view('config');"><i class="fa fa-th"></i> <span>config</span></a></li>
+        <li class="header level1" style="color:#FFFFFF;"><b>server</b></li>
+        <li class="level1"><a href="#" onclick="view('configserver');"><i class="fa fa-th"></i> <span>server</span></a></li>
+
+        <li class="header level2" style="color:#FFFFFF;" onClick="webbrowser('https://www.vultr.com/?ref=7392882');"><b>vultr</b></li>
+        <li class="level2"><a href="#" onclick="view('vultrrun');"><i class="fa fa-th"></i> <span>vultr run</span></a></li>
+    </ul>
+    </section>
+    <input type="button" value="clear" style="position: fixed; bottom: 0px;right: 20px;z-index: 1001;margin-bottom:185px;" onclick="$('#console-output').html('');"/>
+    <pre id="console-output"  style="position: fixed; bottom: 0px;height:200px;width:100%;z-index: 1000;white-space: pre-wrap ;"></pre>
+  </aside>
+  <!-- =============================================== -->
+  <div class="content-wrapper">
+<script>
+var ws; //connection
+if(getParam('page')) {
+  include("./" + getParam('page')+".html");
+} else {
+  include("./start.html");
+}
+</script>
+</div>
+ <!-- =============================================== -->
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <!-- =============================================== -->
+<script src="./adminlte/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="./adminlte/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="./adminlte/dist/js./adminlte.min.js"></script>
+ <!-- =============================================== -->
+<link rel="stylesheet" href="./columns/css/classic.css">
+<script src="./columns/js/jquery.columns.min.js"></script>
+<script src="./jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
+<!-- =============================================== -->
+</body>
+</html>

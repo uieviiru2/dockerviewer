@@ -1,0 +1,81 @@
+    <section class="content-header">
+        <button name="docker-create" class="btn btn-default pull-right" onclick="machinecreate();">
+            <i class="fa fa-edit"></i> docker-machine create --driver virtualbox default
+        </button>
+      <h1>
+        Dashbord 
+      </h1>
+      <button name="docker-start" onclick="machinestart()";>docker-quickstart</button>
+    </section>
+    <section class="content">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">docker-machine ls</h3>
+          </div>
+          <div class="box-body table-responsive no-padding">
+            <div id="docker-machine"></div>
+          </div>
+        </div>
+    </section>
+    <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">docker ps -a</h3>
+        </div>
+        <div class="box-body table-responsive no-padding">
+          <div id="docker-ps"></div>
+        </div>
+      </div>
+    </section>
+    <section class="content">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">docker image list</h3>
+          </div>
+          <div class="box-body table-responsive no-padding">
+            <div id="docker-image"></div>
+          </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">dockerfile</h3>
+          </div>
+          <div class="box-body table-responsive no-padding">
+            <div id="dockerfile"></div>
+          </div>
+        </div>
+      </section>
+      <section class="content">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">dockercompose</h3>
+          </div>
+          <div class="box-body table-responsive no-padding">
+            <div id="dockercompose"></div>
+          </div>
+        </div>
+      </section>
+      <section class="content">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">server list</h3>
+            </div>
+            <div class="box-body table-responsive no-padding">
+              <div id="server-list"></div>
+            </div>
+          </div>
+        </section>
+    <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">vultr list</h3>
+        </div>
+        <div class="box-body table-responsive no-padding">
+          <div id="vultr-list"></div>
+        </div>
+      </div>
+    </section>
+    <script src="./js/index.js"></script>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/uieviiru/test/mylib/jsonedit"
-	"github.com/uieviiru/test/mylib/vultr"
+	"github.com/uieviiru2/mylib/jsonedit"
+	"github.com/uieviiru2/mylib/vultr"
 
 	"github.com/Equanox/gotron"
 )

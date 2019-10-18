@@ -1,0 +1,114 @@
+    <section class="content-header">
+      <h1>
+        docekr run
+      </h1>
+    </section>
+    <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">condition</h3>
+          <form id="frm">
+            <div class="form-group">
+              <label for="">image</label>
+                <select name="docker" id="docker" class="form-control" >
+                  
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="">name</label>
+              <input type="text" name="name" id="name" class="form-control" value="">
+            </div>
+            <div class="form-group">
+              <label for="">-d OR -it</label>
+              <select name="dit" id="dit" class="form-control" >
+                  <option value="-d">-d</option>
+                  <option value="-i">-it</option>
+              </select>
+            </div>
+            <div class="form-group">
+            <label for="">ports</label>
+            <input type="text" name="port" id="port" class="form-control" placeholder="8081:80" value="">
+            </div>
+            <div class="form-group ">
+              <label for="">option</label>
+              <input type="text" name="option" id="option" class="form-control" placeholder="-e HOST=hogehgoe.jp -e LANG=en_US.UTF-8 --privileged" value="">
+          </div>
+            <div class="form-group">
+                <label for="">share directory local</label>&nbsp;&nbsp;&nbsp;<font color="red">select hierarchy below the user directory</font><br  />
+                <div class="originalFileBtn ">
+                        SET DIRECTORY1
+                <input type="file" id="select_dir" webkitdirectory directory >
+                </div>
+                <input type="text" name="dirname" id="dirname" value="">:
+                <input type="text" name="dirname2" id="dirname2" placeholder="/usr/share/nginx/html" value="">
+  
+            </div>
+            <div class="form-group">
+              <label for="">share directory local</label>&nbsp;&nbsp;&nbsp;<font color="red">select hierarchy below the user directory</font><br  />
+              <div class="originalFileBtn ">
+                      SET DIRECTORY2
+              <input type="file" id="select_dir2" webkitdirectory directory >
+              </div>
+              <input type="text" name="dirname_a" id="dirname_a" value="">:
+              <input type="text" name="dirname_a2" id="dirname_a2"  placeholder="/usr/share/nginx/html" value="">
+
+          </div>
+          <div class="form-group">
+            <label for="">share directory local</label>&nbsp;&nbsp;&nbsp;<font color="red">select hierarchy below the user directory</font><br  />
+            <div class="originalFileBtn ">
+                    SET DIRECTORY3
+            <input type="file" id="select_dir3" webkitdirectory directory >
+            </div>
+            <input type="text" name="dirname_b" id="dirname_b" value="">:
+            <input type="text" name="dirname_b2" id="dirname_b2" placeholder="/usr/share/nginx/html" value="">
+
+        </div>
+        <div class="form-group">
+          <label for="">share directory local</label>&nbsp;&nbsp;&nbsp;<font color="red">select hierarchy below the user directory</font><br  />
+          <div class="originalFileBtn ">
+                  SET DIRECTORY4
+          <input type="file" id="select_dir4" webkitdirectory directory >
+          </div>
+          <input type="text" name="dirname_c" id="dirname_c" value="">:
+          <input type="text" name="dirname_c2" id="dirname_c2"  placeholder="/usr/share/nginx/html" value="">
+
+      </div>
+      <div class="form-group">
+        <label for="">share directory local</label>&nbsp;&nbsp;&nbsp;<font color="red">select hierarchy below the user directory</font><br  />
+        <div class="originalFileBtn ">
+                SET DIRECTORY5
+        <input type="file" id="select_dir5" webkitdirectory directory >
+        </div>
+        <input type="text" name="dirname_d" id="dirname_d" value="">:
+        <input type="text" name="dirname_d2" id="dirname_d2"  placeholder="/usr/share/nginx/html" value="">
+
+    </div>
+            <div class="form-group ">
+              <label for="">exec option</label>
+              <input type="text" name="option2" id="option2" class="form-control" placeholder="/sbin/init /usr/sbin/httpd -DFOREGROUND" value="">
+          </div>
+          </form>
+          <input type="button" id="submit_button2" class="btn btn-default" value="SAVE INPUT DATA"></input>
+          <input type="button" id="submit_button" class="btn btn-default" value="RUN"></input>
+        </div>
+        <div class="box-body table-responsive no-padding">
+          
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          
+        </div>
+      </div>
+    </section>
+    <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">input list</h3>
+        </div>
+        <div class="box-body table-responsive no-padding">
+          <div id="inputlist"></div>
+        </div>
+      </div>
+</section>
+<script src="./js/dockerrun.js"></script>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

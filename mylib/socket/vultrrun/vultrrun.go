@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"github.com/Equanox/gotron"
-	"github.com/uieviiru/test/mylib/jsonedit"
-	"github.com/uieviiru/test/mylib/vultr"
+	"github.com/uieviiru2/mylib/jsonedit"
+	"github.com/uieviiru2/mylib/vultr"
 )
 
 type vultrCreateStruct struct {

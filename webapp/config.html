@@ -1,0 +1,63 @@
+<section class="content-header">
+    <h1>
+      config
+    </h1>
+  </section>
+  <section class="content">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">excute setting</h3>
+        <form id="frm">
+          <div class="form-group">
+              <label for=""><a href="javascript:void(0);" onClick="webbrowser('https://docs.docker.com/toolbox/overview/');">DOCKER TOOLBOX</a> DIRCTORY</label><br  />
+              <div class="originalFileBtn ">
+                SET DIRECTORY
+              <input type="file" id="select_dir" webkitdirectory directory/>
+              </div>
+              <input type="text" name="docker_exe" id="docker_exe" value="" class="form-control"  placeholder="C:\Program Files\Docker Toolbox"/>
+          </div>
+          <div class="form-group">
+              <label for="">CONFIG DIRECTORY</label>&nbsp;&nbsp;&nbsp;<font color="red">select hierarchy below the user directory</font><br  /><br  />
+              <div class="originalFileBtn ">
+                      SET DIRECTORY
+              <input type="file" id="select_dir5" webkitdirectory directory />
+              </div>
+              <input type="text" name="config_dir" id="config_dir" value=""  class="form-control"  placeholder="C:\Users\[uname]\dockerconfig" />
+        </div>
+        <!--
+        <div class="form-group">
+            <label for="">SHELL EXECUTABLE FILE</label>(powershell.exe, bash.exe)<br />
+            <div class="originalFileBtn ">
+                    SET DIRECTORY
+            <input type="file" id="select_dir6"/>
+            </div>
+            <input type="text" name="shell_exe" id="shell_exe" value="" />
+      </div>
+      -->
+        <hr />
+          <div class="form-group">
+            <label for="">VULTR API KEY(optional)</label>
+            <input type="text" name="vultr_api_key" id="vultr_api_key" class="form-control" value="">
+          </div>
+          <div class="form-group">
+                <label for="">VULTR PEM FILE(optional)</label><br  />
+                <div class="originalFileBtn ">
+                        SET FILE
+                <input type="file" id="select_dir3" />
+                </div>
+                <input type="text" name="vultr_pem" id="vultr_pem" class="form-control"   value="" />
+          </div>
+        </form>
+        <input type="button" id="submit_button" class="btn btn-default" value="SAVE"></input>
+      </div>
+      <div class="box-body table-responsive no-padding">
+        <img src="https://www.vultr.com/media/banners/banner_300x250.png" width="300" height="250" onClick="webbrowser('https://www.vultr.com/?ref=7392882');">
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        
+      </div>
+    </div>
+  </section>
+<script src="./js/config.js"></script>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

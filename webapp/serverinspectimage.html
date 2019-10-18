@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>docker-vltr</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="./adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./adminlte/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./adminlte/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="./adminlte/dist/css./adminlte.min.css">
+  <link rel="stylesheet" href="./adminlte/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="./jquery.json-viewer/json-viewer/jquery.json-viewer.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="./js/common.js"></script>
+  <style>
+  .originalFileBtn {
+    border: 3px solid;
+    display: inline-block;
+    padding: 2px 1em;
+    position: relative;
+}
+.originalFileBtn input[type="file"] {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+  </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div style="width:100%">
+
+  <!-- =============================================== -->
+
+        <section class="content-header">
+                <h1 id="host_title">
+                </h1>
+              </section>
+              <section class="content">
+                    <div class="box">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">docker image inspect</h3>
+                        &nbsp;&nbsp;&nbsp;<a href="#" onclick="javascript:window.history.back(-1);return false;">back</a>
+                      </div>
+                      <form id="frm">
+                      <input type="button" id="submit_button2" class="btn btn-default" value="remove"></input>
+                      <input type="text" id="id" name="id" />
+                      <input type="checkbox" name="force" value="-f"/>force
+                      </form>
+                      <div class="box-body table-responsive no-padding">
+                        <div id="docker-image-inspect"></div>
+                      </div>
+                      <!-- /.box-body -->
+                      <div class="box-footer">
+                        
+                      </div>
+                    </div>
+                  </section>
+              
+              
+
+<!--
+<pre id="console-output"  class="form-control" style="bottom: 0px;position: fixed;height:200px"></pre>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+-->
+  </div>
+ <!-- =============================================== -->
+
+
+ <!-- =============================================== -->
+<script src="./adminlte/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="./adminlte/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="./adminlte/dist/js./adminlte.min.js"></script>
+ <!-- =============================================== -->
+<link rel="stylesheet" href="./columns/css/classic.css">
+<script src="./columns/js/jquery.columns.min.js"></script>
+<script src="./jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
+<!-- =============================================== -->
+<script src="./js/serverinspectimage.js"></script>
+</body>
+</html>

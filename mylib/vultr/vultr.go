@@ -8,9 +8,9 @@ import (
 	"strings"
 
 	"github.com/Equanox/gotron"
-	"github.com/uieviiru/test/mylib/docker"
-	"github.com/uieviiru/test/mylib/jsonedit"
-	"github.com/uieviiru/test/mylib/socket/config"
+	"github.com/uieviiru2/mylib/docker"
+	"github.com/uieviiru2/mylib/jsonedit"
+	"github.com/uieviiru2/mylib/socket/config"
 )
 
 //curl -H 'API-Key: YOURKEY' https://api.vultr.com/v1/server/list

@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/uieviiru/test/mylib/jsonedit"
-	"github.com/uieviiru/test/mylib/vultr"
+	"github.com/uieviiru2/mylib/jsonedit"
+	"github.com/uieviiru2/mylib/vultr"
 
 	"github.com/Equanox/gotron"
-	"github.com/uieviiru/test/mylib/docker"
+	"github.com/uieviiru2/mylib/docker"
 )
 
 type dockerID struct {

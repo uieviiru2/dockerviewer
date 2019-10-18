@@ -10,7 +10,7 @@ import (
 	"os/user"
 
 	"github.com/Equanox/gotron"
-	"github.com/uieviiru/test/mylib/jsonedit"
+	"github.com/uieviiru2/mylib/jsonedit"
 )
 
 type ConfigStruct struct {
