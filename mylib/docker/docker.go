@@ -138,10 +138,18 @@ func BuildDockerfiles(name string, window *gotron.BrowserWindow) {
 }
 func UpDockerCompose(name string, window *gotron.BrowserWindow) {
 	configData := config.LoadConfig()
-	os.Chdir(configData.ConfigDir + "//docker-compose//" + name)
-	OutLog("docker-compose up -d", window)
-	out := ExecCompose("up", "-d")
+	//os.Chdir(configData.ConfigDir + "//docker-compose//" + name)
+	OutLog("■■■INPUT■■■", window)
+	OutLog("docker-compose -f "+configData.ConfigDir+"//docker-compose//"+name+"//docker-compose.yml up -d", window)
+	out, err := ExecCompose("-f", configData.ConfigDir+"//docker-compose//"+name+"//docker-compose.yml", "up", "-d")
+	if err != "" {
+		OutLog("■■■OUTPUT ERROR■■■", window)
+		OutLog(err, window)
+		return
+	}
+	OutLog("■■■OUTPUT■■■", window)
 	OutLog(out, window)
+	return
 }
 func DockerCompose(window *gotron.BrowserWindow) string {
 	var fileNameJson = ""
@@ -882,7 +890,7 @@ func ExecMachine2(option ...string) (string, string) {
 	return out.String(), ""
 
 }
-func ExecCompose(option ...string) string {
+func ExecCompose(option ...string) (string, string) {
 	fmt.Println(option)
 	configData := config.LoadConfig()
 	cmd := exec.Command(configData.DockerExe+"\\docker-compose.exe", option...)
@@ -893,10 +901,10 @@ func ExecCompose(option ...string) string {
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
-		return fmt.Sprint(err) + ": " + stderr.String()
+		return "", fmt.Sprint(err) + ": " + stderr.String()
 	}
 	fmt.Println("Result: " + out.String())
-	return out.String()
+	return out.String(), ""
 
 }
 
