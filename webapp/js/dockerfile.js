@@ -27,7 +27,8 @@ ws.onopen = function(e) {
             $("#script").val(data.script)
             return
         }
-        if(data.dockerfiles && data.dockerfiles) {
+        if(data.dockerfiles) {
+            try {$('#dockerfile').columns('destroy');} catch(e) {}
             $('#dockerfile').columns({data:data.dockerfiles,
                 schema: [
                     {"header":"NAME", "key":"name", "template":'<a href="#" onclick="loadDockerFile(\'{{name}}\')">{{name}}</a>'},

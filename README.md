@@ -1,2 +1,2 @@
 # dockerviewer
-docker viewer (require npm, go lang)
+docker viewer (require dcoker toolbox, npm, go lang)

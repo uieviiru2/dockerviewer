@@ -37,6 +37,7 @@ func Use(window *gotron.BrowserWindow) {
 		window.Send(&gotron.Event{Event: jsonedit.End(output)})
 	})
 	window.On(&gotron.Event{Event: "dockerfile-save"}, func(bin []byte) {
+		configData := config.LoadConfig()
 		var d dockerfile
 		b := []byte(bin)
 		buf := bytes.NewBuffer(b)
@@ -48,13 +49,20 @@ func Use(window *gotron.BrowserWindow) {
 		fmt.Println(d.Script)
 		docker.SaveDockerfile(d.Name, d.Script, window)
 
-		output := jsonedit.Val("eventName", "log")
-		output = jsonedit.Con(output, jsonedit.Val("log", "Saved"))
-		fmt.Println("output")
-		fmt.Println(output)
+		output := jsonedit.Val("eventName", "Saved")
+
+		jDockerfiles := docker.Dockerfiles(window)
+		output = jsonedit.Con(output, jDockerfiles)
+		path := configData.ConfigDir + "\\Dockerfile"
+		var up userPath
+		up.Path = path
+		bytes, _ := json.Marshal(up)
+		output = jsonedit.Con(output, jsonedit.StripQ(string(bytes)))
 		window.Send(&gotron.Event{Event: jsonedit.End(output)})
+
 	})
 	window.On(&gotron.Event{Event: "dockerfile-test"}, func(bin []byte) {
+		configData := config.LoadConfig()
 		var d dockerfile
 		b := []byte(bin)
 		buf := bytes.NewBuffer(b)
@@ -62,10 +70,22 @@ func Use(window *gotron.BrowserWindow) {
 		if err := json.Unmarshal(b, &d); err != nil {
 			// ...
 		}
-		window.Send(&gotron.Event{Event: jsonedit.End("")})
+		docker.SaveDockerfile(d.Name, d.Script, window)
+
+		output := jsonedit.Val("eventName", "dockerfile-test")
+		jDockerfiles := docker.Dockerfiles(window)
+		output = jsonedit.Con(output, jDockerfiles)
+		path := configData.ConfigDir + "\\Dockerfile"
+		var up userPath
+		up.Path = path
+		bytes, _ := json.Marshal(up)
+		output = jsonedit.Con(output, jsonedit.StripQ(string(bytes)))
+		window.Send(&gotron.Event{Event: jsonedit.End(output)})
+
 		docker.BuildDockerfiles(d.Name, window)
 	})
 	window.On(&gotron.Event{Event: "dockerfile-delete"}, func(bin []byte) {
+		configData := config.LoadConfig()
 		var d dockerfile
 		b := []byte(bin)
 		buf := bytes.NewBuffer(b)
@@ -76,16 +96,16 @@ func Use(window *gotron.BrowserWindow) {
 		fmt.Println(d.Name)
 		docker.DeleteDockerfile(d.Name, window)
 
-		/*
-			output := jsonedit.Val("eventName", "dockerfile")
+		output := jsonedit.Val("eventName", "dockerfile-delete")
 
-			jDockerfiles := docker.Dockerfiles()
-			output = jsonedit.Con(output, jDockerfiles)
-			fmt.Println("output")
-			fmt.Println(output)
-			window.Send(&gotron.Event{Event: jsonedit.End(output)})
-		*/
-		//window.Send(&gotron.Event{Event: jsonedit.End("")})
+		jDockerfiles := docker.Dockerfiles(window)
+		output = jsonedit.Con(output, jDockerfiles)
+		path := configData.ConfigDir + "\\Dockerfile"
+		var up userPath
+		up.Path = path
+		bytes, _ := json.Marshal(up)
+		output = jsonedit.Con(output, jsonedit.StripQ(string(bytes)))
+		window.Send(&gotron.Event{Event: jsonedit.End(output)})
 	})
 	window.On(&gotron.Event{Event: "dockerfile-load"}, func(bin []byte) {
 		var d dockerfile

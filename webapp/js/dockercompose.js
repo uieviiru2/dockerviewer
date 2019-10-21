@@ -28,6 +28,7 @@ ws.onopen = function(e) {
             return
         }
         if(data.dockercompose) {
+            try {$('#dockercompose').columns('destroy');} catch(e) {}
             $('#dockercompose').columns({data:data.dockercompose,
                 schema: [
                     {"header":"NAME", "key":"name", "template":'<a href="#" onclick="loadDockerCompose(\'{{name}}\')">{{name}}</a>'},
