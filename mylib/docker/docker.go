@@ -483,6 +483,14 @@ func DeleteDeployInputfile(name string, window *gotron.BrowserWindow) {
 	OutLog("■■■Delete Deploy Input File■■■", window)
 	OutLog(name, window)
 }
+func SaveImage(containerID, imageName, message string, window *gotron.BrowserWindow) {
+	OutLog("■■■INPUT■■■", window)
+	OutLog("docker commit -m "+containerID+" "+imageName, window)
+	output := ExecCommand("commit", "-m", "\""+message+"\"", containerID, imageName)
+	OutLog("■■■OUTPUT■■■", window)
+	OutLog(output, window)
+}
+
 func Pull2(pullName string, window *gotron.BrowserWindow) {
 	OutLog("■■■INPUT■■■", window)
 	OutLog("docker pull "+pullName, window)
@@ -509,9 +517,12 @@ func Machine(window *gotron.BrowserWindow) string {
 	output = jsonedit.Split2(output, "\r\n|\n\r|\n|\r", "machine")
 	return output
 }
-func ReloadMachine(name string) {
+func ReloadMachine(name string, window *gotron.BrowserWindow) {
+	OutLog("■■■INPUT■■■", window)
+	OutLog("docker-machine restart", window)
 	output := ExecMachine("restart", name)
-	fmt.Println(output)
+	OutLog("■■■OUTPUT■■■", window)
+	OutLog(output, window)
 }
 func GetPs(window *gotron.BrowserWindow) string {
 	OutLog("■■■INPUT■■■", window)

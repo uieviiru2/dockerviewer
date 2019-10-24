@@ -102,7 +102,7 @@ func Use(window *gotron.BrowserWindow) {
 		if err := json.Unmarshal(b, &d); err != nil {
 			// ...
 		}
-		docker.ReloadMachine(d.MachineName)
+		docker.ReloadMachine(d.MachineName, window)
 	})
 	window.On(&gotron.Event{Event: "index-machinessh"}, func(bin []byte) {
 		var d Reload

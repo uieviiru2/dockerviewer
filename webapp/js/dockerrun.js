@@ -121,6 +121,7 @@ $(document).ready(function () {
         ws.send(JSON.stringify(fromData))
         console.log("Send success!!");
     });
+
     $("#select_dir").on('change', function() {
         for (i = 0; i < this.files.length; i++) {
             $("#dirname").val(this.files[i].path)

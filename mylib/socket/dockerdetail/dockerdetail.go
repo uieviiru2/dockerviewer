@@ -37,6 +37,11 @@ type dockerDeploy struct {
 	Option2   string `json:"option2"`
 	Cmd       string `json:"cmd"`
 }
+type saveImage struct {
+	ID        string `json:"id"`
+	ImageName string `json:"iamge_name"`
+	Message   string `json:"message"`
+}
 
 func Use(window *gotron.BrowserWindow) {
 
@@ -184,6 +189,18 @@ func Use(window *gotron.BrowserWindow) {
 		output = jsonedit.Con(output, jRunInputfiles)
 		fmt.Println(output)
 		window.Send(&gotron.Event{Event: jsonedit.End(output)})
+	})
+	window.On(&gotron.Event{Event: "dockerdetail-saveimage"}, func(bin []byte) {
+		var d saveImage
+		b := []byte(bin)
+		buf := bytes.NewBuffer(b)
+		fmt.Println(buf)
+		if err := json.Unmarshal(b, &d); err != nil {
+			// ...
+		}
+		fmt.Println(d.ID)
+		fmt.Println(d.ImageName)
+		docker.SaveImage(d.ID, d.ImageName, d.Message, window)
 	})
 }
 func makeRunStr(d dockerDeploy) string {

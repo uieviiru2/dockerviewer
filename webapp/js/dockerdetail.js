@@ -159,6 +159,17 @@ $(document).ready(function () {
         ws.send(JSON.stringify(fromData))
         console.log("Send success!!");
     });
+    $("#submit_button5").click(function() {
+        var fromData = formToData($("#frm2"));
+        fromData.id = getParam('id')
+        if($("#iamge_name").val() == "") {
+            alert("require name")
+            return;
+        }
+        fromData['event'] = "dockerdetail-saveimage"
+        ws.send(JSON.stringify(fromData))
+        console.log("Send success!!");
+    });
     $("#select_dir").on('change', function() {
         for (i = 0; i < this.files.length; i++) {
             $("#dirname").val(this.files[i].path)
