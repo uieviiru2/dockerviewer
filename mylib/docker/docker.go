@@ -848,7 +848,12 @@ func Run(docker, name, dit, port, dirname, dirname2, dirnameA, dirnameA2, dirnam
 func ExecCommand(option ...string) string {
 	fmt.Println(option)
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"/docker.exe", option...)
+
+	cmdStr := configData.DockerExe + "/docker"
+	if IsWindows() {
+		cmdStr += ".exe"
+	}
+	cmd := exec.Command(cmdStr, option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -863,7 +868,11 @@ func ExecCommand(option ...string) string {
 }
 func ExecCommand2(option ...string) (string, string) {
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"/docker.exe", option...)
+	cmdStr := configData.DockerExe + "/docker"
+	if IsWindows() {
+		cmdStr += ".exe"
+	}
+	cmd := exec.Command(cmdStr, option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -877,7 +886,11 @@ func ExecCommand2(option ...string) (string, string) {
 func ExecMachine(option ...string) string {
 	fmt.Println(option)
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"/docker-machine.exe", option...)
+	cmdStr := configData.DockerExe + "/docker-machine"
+	if IsWindows() {
+		cmdStr += ".exe"
+	}
+	cmd := exec.Command(cmdStr, option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -894,7 +907,11 @@ func ExecMachine(option ...string) string {
 func ExecMachine2(option ...string) (string, string) {
 	fmt.Println(option)
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"/docker-machine.exe", option...)
+	cmdStr := configData.DockerExe + "/docker-machine"
+	if IsWindows() {
+		cmdStr += ".exe"
+	}
+	cmd := exec.Command(cmdStr, option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -911,7 +928,11 @@ func ExecMachine2(option ...string) (string, string) {
 func ExecCompose(option ...string) (string, string) {
 	fmt.Println(option)
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"/docker-compose.exe", option...)
+	cmdStr := configData.DockerExe + "/docker-compose"
+	if IsWindows() {
+		cmdStr += ".exe"
+	}
+	cmd := exec.Command(cmdStr, option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -1161,7 +1182,11 @@ func OutLog(logData string, window *gotron.BrowserWindow) {
 	//window.Send(&gotron.Event{Event: jsonedit.End(output)})
 }
 func OpenExplorer(path string) {
-	exec.Command("C:/Windows/EXPLORER.EXE", path).Output()
+	if IsWindows() {
+		exec.Command("C:/Windows/EXPLORER.EXE", path).Output()
+	} else {
+		exec.Command("open", path).Output()
+	}
 }
 func OpenDockerEnter(path string) {
 	configData := config.LoadConfig()

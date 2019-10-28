@@ -142,7 +142,11 @@ func Use(window *gotron.BrowserWindow) {
 		if err := json.Unmarshal(b, &d); err != nil {
 			// ...
 		}
-		exec.Command("rundll32.exe", "url.dll,FileProtocolHandler", d.Url).Start()
+		if docker.IsWindows() {
+			exec.Command("rundll32.exe", "url.dll,FileProtocolHandler", d.Url).Start()
+		} else {
+			exec.Command("open", d.Url).Start()
+		}
 	})
 	window.On(&gotron.Event{Event: "explorer"}, func(bin []byte) {
 		var d Explorer
