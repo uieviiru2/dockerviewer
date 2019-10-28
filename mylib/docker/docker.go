@@ -491,6 +491,20 @@ func SaveImage(containerID, imageName, message string, window *gotron.BrowserWin
 	OutLog(output, window)
 }
 
+func StartContainer(containerID string, window *gotron.BrowserWindow) {
+	OutLog("■■■INPUT■■■", window)
+	OutLog("docker start "+containerID, window)
+	output := ExecCommand("start", containerID)
+	OutLog("■■■OUTPUT■■■", window)
+	OutLog(output, window)
+}
+func StopContainer(containerID string, window *gotron.BrowserWindow) {
+	OutLog("■■■INPUT■■■", window)
+	OutLog("docker stop "+containerID, window)
+	output := ExecCommand("stop", containerID)
+	OutLog("■■■OUTPUT■■■", window)
+	OutLog(output, window)
+}
 func Pull2(pullName string, window *gotron.BrowserWindow) {
 	OutLog("■■■INPUT■■■", window)
 	OutLog("docker pull "+pullName, window)

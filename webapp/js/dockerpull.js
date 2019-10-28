@@ -36,7 +36,7 @@ ws.onopen = function(e) {
                     {"header":"IsAutomated", "key":"IsAutomated"},
                     {"header":"IsOfficial", "key":"IsOfficial"},
                     {"header":"StarCount", "key":"StarCount"},
-                    {"header":"", "key":"Name", "template":'<button class="douckerpullbutton" name="pull" onclick="dockerpullexecute(\'{{Name}}\')";>PULL</button>'},
+                    {"header":"", "key":"Name", "template":'<form onsubmit="return dockerpullexecute(this);">{{Name}}:<input type="text" name="sub" value="" /><input type="hidden" name="name" value="{{Name}}" /><input type="submit" class="douckerpullbutton" name="pull" value="PULL"></form>'},
             ]
             });
             
@@ -72,6 +72,7 @@ $(document).ready(function () {
           }
     });
 });
+/*
 function dockerpullexecute(dockername) {
     var formData = {};
     formData['event'] = "dockerpull-excute";
@@ -79,6 +80,17 @@ function dockerpullexecute(dockername) {
     
     ws.send(JSON.stringify(formData))
     console.log("Send success!!");
+}
+*/
+function dockerpullexecute(frm) {
+    var formData = {};
+    formData['event'] = "dockerpull-excute";
+    formData['pull_name'] = frm.elements["name"].value;
+    if(frm.elements["sub"].value.trim() != "") {
+        formData['pull_name'] += ":" + frm.elements["sub"].value.trim();
+    }
+    ws.send(JSON.stringify(formData))
+    return false;
 }
 document.onkeypress = enter;
 function enter(){

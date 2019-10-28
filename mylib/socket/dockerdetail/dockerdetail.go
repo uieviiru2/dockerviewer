@@ -202,6 +202,28 @@ func Use(window *gotron.BrowserWindow) {
 		fmt.Println(d.ImageName)
 		docker.SaveImage(d.ID, d.ImageName, d.Message, window)
 	})
+	window.On(&gotron.Event{Event: "dockerdetail-start"}, func(bin []byte) {
+		var d dockerDeploy
+		b := []byte(bin)
+		buf := bytes.NewBuffer(b)
+		fmt.Println(buf)
+		if err := json.Unmarshal(b, &d); err != nil {
+			// ...
+		}
+		fmt.Println(d.ID)
+		docker.StartContainer(d.ID, window)
+	})
+	window.On(&gotron.Event{Event: "dockerdetail-stop"}, func(bin []byte) {
+		var d dockerDeploy
+		b := []byte(bin)
+		buf := bytes.NewBuffer(b)
+		fmt.Println(buf)
+		if err := json.Unmarshal(b, &d); err != nil {
+			// ...
+		}
+		fmt.Println(d.ID)
+		docker.StopContainer(d.ID, window)
+	})
 }
 func makeRunStr(d dockerDeploy) string {
 	cmd := "HOST:" + d.ServerIP + " docker run " + d.Dit + " --name " + d.Name

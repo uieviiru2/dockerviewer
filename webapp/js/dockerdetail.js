@@ -134,28 +134,24 @@ $(document).ready(function () {
     $("#submit_button").click(function() {
         var fromData = formToData($("#frm"));
         fromData['event'] = "dockerdetail-deploy"
-
         ws.send(JSON.stringify(fromData))
         console.log("Send success!!");
     });
     $("#submit_button2").click(function() {
         var fromData = formToData($("#frm"));
         fromData['event'] = "dockerdetail-remove"
-
         ws.send(JSON.stringify(fromData))
         console.log("Send success!!");
     });
     $("#submit_button3").click(function() {
         var fromData = formToData($("#frm"));
         fromData['event'] = "dockerdetail-bash"
-
         ws.send(JSON.stringify(fromData))
         console.log("Send success!!");
     });
     $("#submit_button4").click(function() {
         var fromData = formToData($("#frm"));
         fromData['event'] = "dockerdetail-saveinput"
-
         ws.send(JSON.stringify(fromData))
         console.log("Send success!!");
     });
@@ -167,6 +163,18 @@ $(document).ready(function () {
             return;
         }
         fromData['event'] = "dockerdetail-saveimage"
+        ws.send(JSON.stringify(fromData))
+        console.log("Send success!!");
+    });
+    $("#submit_button6").click(function() {
+        var fromData = formToData($("#frm"));
+        fromData['event'] = "dockerdetail-start"
+        ws.send(JSON.stringify(fromData))
+        console.log("Send success!!");
+    });
+    $("#submit_button7").click(function() {
+        var fromData = formToData($("#frm"));
+        fromData['event'] = "dockerdetail-stop"
         ws.send(JSON.stringify(fromData))
         console.log("Send success!!");
     });
