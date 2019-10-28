@@ -935,22 +935,24 @@ func ScpCommand(option ...string) string {
 	}
 	fmt.Println("Result: " + string(out))
 	return string(out)
-	//C:\WINDOWS\System32\OpenSSH\scp.exe
 }
 
 func SshCommand(option ...string) {
 	fmt.Println(option)
 	exec.Command("ssh", option...).Start()
-	//C:\WINDOWS\System32\OpenSSH\scp.exe
 }
 
 //WindowのpathをDockerように変更する
 func ChangeDockerPath(path string) string {
-	path = strings.Replace(path, "\\", "/", -1)
-	path = strings.Replace(path, ":", "", 1)
-	path = strings.ToLower(path[0:1]) + path[1:]
-	path = "/" + path
-	return path
+	if IsWindows() {
+		path = strings.Replace(path, "\\", "/", -1)
+		path = strings.Replace(path, ":", "", 1)
+		path = strings.ToLower(path[0:1]) + path[1:]
+		path = "/" + path
+		return path
+	} else {
+		return path
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////
