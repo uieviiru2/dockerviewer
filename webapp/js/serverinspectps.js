@@ -58,4 +58,20 @@ $(document).ready(function () {
         ws.send(JSON.stringify(fromData))
         console.log("Send success!!");
     });
+    $("#submit_button6").click(function() {
+        var fromData = formToData($("#frm"));
+        fromData['id'] =  getParam('id');
+        fromData['ip'] =  getParam('ip');
+        fromData['v'] =  getParam('v');
+        fromData['event'] = "serverinspectps-start"
+        ws.send(JSON.stringify(fromData))
+    });
+    $("#submit_button7").click(function() {
+        var fromData = formToData($("#frm"));
+        fromData['id'] =  getParam('id');
+        fromData['ip'] =  getParam('ip');
+        fromData['v'] =  getParam('v');
+        fromData['event'] = "serverinspectps-stop"
+        ws.send(JSON.stringify(fromData))
+    });
 });
