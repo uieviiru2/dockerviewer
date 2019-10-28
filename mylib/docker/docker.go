@@ -40,10 +40,10 @@ func DockerMachineIp(name string) string {
 func Dockerfiles(window *gotron.BrowserWindow) string {
 	var fileNameJson = ""
 	configData := config.LoadConfig()
-	if configData.ConfigDir+"\\Dockerfile" == "" {
+	if configData.ConfigDir+"/Dockerfile" == "" {
 		return fileNameJson
 	}
-	files, err := ioutil.ReadDir(configData.ConfigDir + "\\Dockerfile")
+	files, err := ioutil.ReadDir(configData.ConfigDir + "/dockerfile")
 	if err != nil {
 		panic(err)
 	}
@@ -64,21 +64,15 @@ func Dockerfiles(window *gotron.BrowserWindow) string {
 	return jsonedit.List("dockerfiles", fileNameJson)
 }
 
-/*
-func UploadDockerfile(serverip, pemFile, dockerfileName string) {
-	configData := config.LoadConfig()
-	ScpCommand("-oStrictHostKeyChecking=no", "-i", pemFile, "-r", configData.ConfigDir+"\\Dockerfile\\"+dockerfileName, "docker@"+serverip+":~/")
-}
-*/
 func SaveDockerfile(name, script string, window *gotron.BrowserWindow) string {
 	script = strings.Replace(script, "\r\n", "\n", -1)
 	script = strings.Replace(script, "\r", "\n", -1)
 	configData := config.LoadConfig()
-	fmt.Println(configData.ConfigDir + "\\Dockerfile\\" + name)
-	if err := os.MkdirAll(configData.ConfigDir+"\\Dockerfile\\"+name, 0777); err != nil {
+	fmt.Println(configData.ConfigDir + "/Dockerfile/" + name)
+	if err := os.MkdirAll(configData.ConfigDir+"/Dockerfile/"+name, 0777); err != nil {
 		fmt.Println(err)
 	}
-	file, err := os.Create(configData.ConfigDir + "\\Dockerfile\\" + name + "\\Dockerfile")
+	file, err := os.Create(configData.ConfigDir + "/Dockerfile/" + name + "/Dockerfile")
 	if err != nil {
 		// Openエラー処理
 	}
@@ -92,7 +86,7 @@ func SaveDockerfile(name, script string, window *gotron.BrowserWindow) string {
 }
 func DeleteDockerfile(name string, window *gotron.BrowserWindow) {
 	configData := config.LoadConfig()
-	if err := os.RemoveAll(configData.ConfigDir + "\\Dockerfile\\" + name); err != nil {
+	if err := os.RemoveAll(configData.ConfigDir + "/Dockerfile/" + name); err != nil {
 		fmt.Println(err)
 	}
 	OutLog("■■■Delete Dockerfile■■■", window)
@@ -100,8 +94,8 @@ func DeleteDockerfile(name string, window *gotron.BrowserWindow) {
 }
 func LoadDockerfile(name string, window *gotron.BrowserWindow) string {
 	configData := config.LoadConfig()
-	fmt.Println(configData.ConfigDir + "\\Dockerfile\\" + name + "\\Dockerfile")
-	file, err := os.Open(configData.ConfigDir + "\\Dockerfile\\" + name + "\\Dockerfile")
+	fmt.Println(configData.ConfigDir + "/Dockerfile/" + name + "/Dockerfile")
+	file, err := os.Open(configData.ConfigDir + "/Dockerfile/" + name + "/Dockerfile")
 	if err != nil {
 		// Openエラー処理
 	}
@@ -162,10 +156,10 @@ func UpDockerCompose(name string, window *gotron.BrowserWindow) {
 func DockerCompose(window *gotron.BrowserWindow) string {
 	var fileNameJson = ""
 	configData := config.LoadConfig()
-	if configData.ConfigDir+"\\docker-compose" == "" {
+	if configData.ConfigDir+"/docker-compose" == "" {
 		return fileNameJson
 	}
-	files, err := ioutil.ReadDir(configData.ConfigDir + "\\docker-compose")
+	files, err := ioutil.ReadDir(configData.ConfigDir + "/docker-compose")
 	if err != nil {
 		panic(err)
 	}
@@ -185,21 +179,15 @@ func DockerCompose(window *gotron.BrowserWindow) string {
 	return jsonedit.List("dockercompose", fileNameJson)
 }
 
-/*
-func UploadDockerCompose(serverip, pemFile, dockerComposeName string) {
-	configData := config.LoadConfig()
-	ScpCommand("-oStrictHostKeyChecking=no", "-i", pemFile, "-r", configData.ConfigDir+"\\docker-compose\\"+dockerComposeName, "docker@"+serverip+":~/")
-}
-*/
 func SaveDockerCompose(name, script string) string {
 	script = strings.Replace(script, "\r\n", "\n", -1)
 	script = strings.Replace(script, "\r", "\n", -1)
 	configData := config.LoadConfig()
-	fmt.Println(configData.ConfigDir + "\\docker-compose\\" + name)
-	if err := os.MkdirAll(configData.ConfigDir+"\\docker-compose\\"+name, 0777); err != nil {
+	fmt.Println(configData.ConfigDir + "/docker-compose/" + name)
+	if err := os.MkdirAll(configData.ConfigDir+"/docker-compose/"+name, 0777); err != nil {
 		fmt.Println(err)
 	}
-	file, err := os.Create(configData.ConfigDir + "\\docker-compose\\" + name + "\\docker-compose.yml")
+	file, err := os.Create(configData.ConfigDir + "/docker-compose/" + name + "/docker-compose.yml")
 	if err != nil {
 		// Openエラー処理
 	}
@@ -210,14 +198,14 @@ func SaveDockerCompose(name, script string) string {
 }
 func DeleteDockerCompose(name string) {
 	configData := config.LoadConfig()
-	if err := os.RemoveAll(configData.ConfigDir + "\\docker-compose\\" + name); err != nil {
+	if err := os.RemoveAll(configData.ConfigDir + "/docker-compose/" + name); err != nil {
 		fmt.Println(err)
 	}
 }
 func LoadDockerCompose(name string) string {
 	configData := config.LoadConfig()
-	fmt.Println(configData.ConfigDir + "\\docker-compose\\" + name + "\\docker-compose.yml")
-	file, err := os.Open(configData.ConfigDir + "\\docker-compose\\" + name + "\\docker-compose.yml")
+	fmt.Println(configData.ConfigDir + "/docker-compose/" + name + "/docker-compose.yml")
+	file, err := os.Open(configData.ConfigDir + "/docker-compose/" + name + "/docker-compose.yml")
 	if err != nil {
 		// Openエラー処理
 	}
@@ -247,7 +235,7 @@ func Serverfiles(window *gotron.BrowserWindow) string {
 		return serverListJson
 	}
 
-	files, err := ioutil.ReadDir(configData.ConfigDir + "\\server")
+	files, err := ioutil.ReadDir(configData.ConfigDir + "/server")
 	if err != nil {
 		panic(err)
 	}
@@ -256,9 +244,9 @@ func Serverfiles(window *gotron.BrowserWindow) string {
 	for _, file := range files {
 
 		if !firstFlg {
-			serverListJson += "," + FileRead(configData.ConfigDir+"\\server\\"+file.Name())
+			serverListJson += "," + FileRead(configData.ConfigDir+"/server/"+file.Name())
 		} else {
-			serverListJson += FileRead(configData.ConfigDir + "\\server\\" + file.Name())
+			serverListJson += FileRead(configData.ConfigDir + "/server/" + file.Name())
 			firstFlg = false
 		}
 	}
@@ -272,7 +260,7 @@ func RunInputfiles() string {
 	if configData.ConfigDir == "" {
 		return serverListJson
 	}
-	files, err := ioutil.ReadDir(configData.ConfigDir + "\\runinput")
+	files, err := ioutil.ReadDir(configData.ConfigDir + "/runinput")
 	if err != nil {
 		panic(err)
 	}
@@ -281,9 +269,9 @@ func RunInputfiles() string {
 	for _, file := range files {
 
 		if !firstFlg {
-			serverListJson += "," + FileRead(configData.ConfigDir+"\\runinput\\"+file.Name())
+			serverListJson += "," + FileRead(configData.ConfigDir+"/runinput/"+file.Name())
 		} else {
-			serverListJson += FileRead(configData.ConfigDir + "\\runinput\\" + file.Name())
+			serverListJson += FileRead(configData.ConfigDir + "/runinput/" + file.Name())
 			firstFlg = false
 		}
 	}
@@ -296,7 +284,7 @@ func DeployInputfiles() string {
 	if configData.ConfigDir == "" {
 		return serverListJson
 	}
-	files, err := ioutil.ReadDir(configData.ConfigDir + "\\deployinput")
+	files, err := ioutil.ReadDir(configData.ConfigDir + "/deployinput")
 	if err != nil {
 		panic(err)
 	}
@@ -305,9 +293,9 @@ func DeployInputfiles() string {
 	for _, file := range files {
 
 		if !firstFlg {
-			serverListJson += "," + FileRead(configData.ConfigDir+"\\deployinput\\"+file.Name())
+			serverListJson += "," + FileRead(configData.ConfigDir+"/deployinput/"+file.Name())
 		} else {
-			serverListJson += FileRead(configData.ConfigDir + "\\deployinput\\" + file.Name())
+			serverListJson += FileRead(configData.ConfigDir + "/deployinput/" + file.Name())
 			firstFlg = false
 		}
 	}
@@ -361,14 +349,13 @@ func SaveServerfile(name, json string, window *gotron.BrowserWindow) {
 }
 func DeleteServerfile(name string) {
 	configData := config.LoadConfig()
-	if err := os.Remove(configData.ConfigDir + "\\server\\" + name); err != nil {
+	if err := os.Remove(configData.ConfigDir + "/server/" + name); err != nil {
 		fmt.Println(err)
 	}
 }
 func LoadServerfile(name string) string {
 	configData := config.LoadConfig()
-	fmt.Println(configData.ConfigDir + "\\server\\" + name)
-	file, err := os.Open(configData.ConfigDir + "\\server\\" + name)
+	file, err := os.Open(configData.ConfigDir + "/server/" + name)
 	if err != nil {
 		// Openエラー処理
 	}
@@ -409,7 +396,7 @@ func SaveRunInputfile(name, json string, window *gotron.BrowserWindow) {
 }
 func DeleteRunInputfile(name string, window *gotron.BrowserWindow) {
 	configData := config.LoadConfig()
-	if err := os.Remove(configData.ConfigDir + "\\runinput\\" + name); err != nil {
+	if err := os.Remove(configData.ConfigDir + "/runinput/" + name); err != nil {
 		fmt.Println(err)
 	}
 	OutLog("■■■Delete Run Input File■■■", window)
@@ -417,8 +404,8 @@ func DeleteRunInputfile(name string, window *gotron.BrowserWindow) {
 }
 func LoadRunInputfile(name string) string {
 	configData := config.LoadConfig()
-	fmt.Println(configData.ConfigDir + "\\runinput\\" + name)
-	file, err := os.Open(configData.ConfigDir + "\\runinput\\" + name)
+	fmt.Println(configData.ConfigDir + "/runinput/" + name)
+	file, err := os.Open(configData.ConfigDir + "/runinput/" + name)
 	if err != nil {
 		// Openエラー処理
 	}
@@ -459,8 +446,8 @@ func SaveDeployInputfile(name, json string, window *gotron.BrowserWindow) {
 }
 func LoadDeployInputfile(name string) string {
 	configData := config.LoadConfig()
-	fmt.Println(configData.ConfigDir + "\\deployinput\\" + name)
-	file, err := os.Open(configData.ConfigDir + "\\deployinput\\" + name)
+	fmt.Println(configData.ConfigDir + "/deployinput/" + name)
+	file, err := os.Open(configData.ConfigDir + "/deployinput/" + name)
 	if err != nil {
 		// Openエラー処理
 	}
@@ -485,7 +472,7 @@ func LoadDeployInputfile(name string) string {
 }
 func DeleteDeployInputfile(name string, window *gotron.BrowserWindow) {
 	configData := config.LoadConfig()
-	if err := os.Remove(configData.ConfigDir + "\\deployinput\\" + name); err != nil {
+	if err := os.Remove(configData.ConfigDir + "deployinput/" + name); err != nil {
 		fmt.Println(err)
 	}
 	OutLog("■■■Delete Deploy Input File■■■", window)
@@ -565,7 +552,6 @@ func GetPs(window *gotron.BrowserWindow) string {
 func GetServerPs(ip, user, key string, window *gotron.BrowserWindow) string {
 	fmt.Println(user + "@" + ip + ":" + key)
 	output := GOGetOutput(user, key, ip, "docker ps -a --format \"{{json . }}\"", window)
-	//output := dockerCommand("ps", "-a", "--format", "\"table {{.Command}}\\t{{.CreatedAt}}\\t{{.ID}}\\t{{.Image}}\\t{{.Labels}}\\t{{.LocalVolumes}}\\t{{.Mounts}}\\t{{.Names}}\\t{{.Networks}}\\t{{.Ports}}\\t{{.RunningFor}}\\t{{.Size}}\\t{{.Status}}\"")
 	fmt.Println("GetServerPs")
 	fmt.Println(output)
 	output = jsonedit.Split(output, "\r\n|\n\r|\n|\r", "ps")
@@ -591,7 +577,6 @@ func Image(window *gotron.BrowserWindow) string {
 func ServerImage(ip, user, key string, window *gotron.BrowserWindow) string {
 
 	output := GOGetOutput(user, key, ip, "docker image list --format \"{{json . }}\"", window)
-	//output := dockerCommand("ps", "-a", "--format", "\"table {{.Command}}\\t{{.CreatedAt}}\\t{{.ID}}\\t{{.Image}}\\t{{.Labels}}\\t{{.LocalVolumes}}\\t{{.Mounts}}\\t{{.Names}}\\t{{.Networks}}\\t{{.Ports}}\\t{{.RunningFor}}\\t{{.Size}}\\t{{.Status}}\"")
 	fmt.Println("ServerImage")
 	fmt.Println(output)
 	output = jsonedit.Split(output, "\r\n|\n\r|\n|\r", "image")
@@ -629,7 +614,7 @@ func Deploy(id, name, dit, pem, user, serverip, port, dirname, dirname2, dirname
 	Go(user, pem, serverip, "mkdir -p ~/dockerconfig", window)
 
 	configData := config.LoadConfig()
-	if err := os.MkdirAll(configData.ConfigDir+"\\tmp\\"+id, 0777); err != nil {
+	if err := os.MkdirAll(configData.ConfigDir+"/tmp/"+id, 0777); err != nil {
 		OutLog(err.Error(), window)
 		return
 	}
@@ -637,11 +622,11 @@ func Deploy(id, name, dit, pem, user, serverip, port, dirname, dirname2, dirname
 	OutLog("docker commit "+id+" "+id, window)
 	OutLog(ExecCommand("commit", id, id), window)
 
-	OutLog("docker save "+id+" io "+configData.ConfigDir+"\\tmp\\"+id+"\\"+id, window)
-	OutLog(ExecCommand("save", id, "-o", configData.ConfigDir+"\\tmp\\"+id+"\\"+id), window)
+	OutLog("docker save "+id+" io "+configData.ConfigDir+"/tmp/"+id+"/"+id, window)
+	OutLog(ExecCommand("save", id, "-o", configData.ConfigDir+"/tmp/"+id+"/"+id), window)
 
 	//リモート作業
-	OutLog(ScpCommand("-oStrictHostKeyChecking=no", "-i", pem, "-r", configData.ConfigDir+"\\tmp\\"+id, user+"@"+serverip+":~/dockerconfig/"), window)
+	OutLog(ScpCommand("-oStrictHostKeyChecking=no", "-i", pem, "-r", configData.ConfigDir+"/tmp/"+id, user+"@"+serverip+":~/dockerconfig/"), window)
 
 	cmd := "cd ~/dockerconfig/" + id
 	cmd += "\ndocker load < ./" + id
@@ -687,21 +672,21 @@ func ServerDeploy(id, name, dit, pem, user, serverip, port, dirname, dirname2, d
 	Go(user, pem, serverip, "mkdir -p ~/dockerconfig", window)
 
 	configData := config.LoadConfig()
-	if err := os.MkdirAll(configData.ConfigDir+"\\tmp\\"+id, 0777); err != nil {
+	if err := os.MkdirAll(configData.ConfigDir+"/tmp/"+id, 0777); err != nil {
 		OutLog("■■■OUTPUT ERROR■■■", window)
 		OutLog(err.Error(), window)
 		return
 	}
 	OutLog("■■■INPUT■■■", window)
-	OutLog("docker save "+id+" io "+configData.ConfigDir+"\\tmp\\"+id+"\\"+id, window)
+	OutLog("docker save "+id+" io "+configData.ConfigDir+"/tmp/"+id+"/"+id, window)
 	OutLog("■■■OUTPUT■■■", window)
-	OutLog(ExecCommand("save", id, "-o", configData.ConfigDir+"\\tmp\\"+id+"\\"+id), window)
+	OutLog(ExecCommand("save", id, "-o", configData.ConfigDir+"/tmp/"+id+"/"+id), window)
 
 	//リモート作業
 	OutLog("■■■INPUT■■■", window)
-	OutLog("scp -oStrictHostKeyChecking=no -i "+pem+" -r "+configData.ConfigDir+"\\tmp\\"+id+" "+user+"@"+serverip+":~/dockerconfig/", window)
+	OutLog("scp -oStrictHostKeyChecking=no -i "+pem+" -r "+configData.ConfigDir+"/tmp/"+id+" "+user+"@"+serverip+":~/dockerconfig/", window)
 	OutLog("■■■OUTPUT■■■", window)
-	OutLog(ScpCommand("-oStrictHostKeyChecking=no", "-i", pem, "-r", configData.ConfigDir+"\\tmp\\"+id, user+"@"+serverip+":~/dockerconfig/"), window)
+	OutLog(ScpCommand("-oStrictHostKeyChecking=no", "-i", pem, "-r", configData.ConfigDir+"/tmp/"+id, user+"@"+serverip+":~/dockerconfig/"), window)
 
 	cmd := "cd ~/dockerconfig/" + id
 	cmd += "\ndocker load < ./" + id
@@ -857,13 +842,13 @@ func Run(docker, name, dit, port, dirname, dirname2, dirnameA, dirnameA2, dirnam
 	}
 	ip := DockerMachineIp("default")
 	userData, _ := user.Current()
-	Go("docker", userData.HomeDir+"\\.docker\\machine\\machines\\default\\id_rsa", ip, cmd, window)
+	Go("docker", userData.HomeDir+"/.docker/machine/machines/default/id_rsa", ip, cmd, window)
 }
 
 func ExecCommand(option ...string) string {
 	fmt.Println(option)
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"\\docker.exe", option...)
+	cmd := exec.Command(configData.DockerExe+"/docker.exe", option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -878,7 +863,7 @@ func ExecCommand(option ...string) string {
 }
 func ExecCommand2(option ...string) (string, string) {
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"\\docker.exe", option...)
+	cmd := exec.Command(configData.DockerExe+"/docker.exe", option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -892,7 +877,7 @@ func ExecCommand2(option ...string) (string, string) {
 func ExecMachine(option ...string) string {
 	fmt.Println(option)
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"\\docker-machine.exe", option...)
+	cmd := exec.Command(configData.DockerExe+"/docker-machine.exe", option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -909,7 +894,7 @@ func ExecMachine(option ...string) string {
 func ExecMachine2(option ...string) (string, string) {
 	fmt.Println(option)
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"\\docker-machine.exe", option...)
+	cmd := exec.Command(configData.DockerExe+"/docker-machine.exe", option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -926,7 +911,7 @@ func ExecMachine2(option ...string) (string, string) {
 func ExecCompose(option ...string) (string, string) {
 	fmt.Println(option)
 	configData := config.LoadConfig()
-	cmd := exec.Command(configData.DockerExe+"\\docker-compose.exe", option...)
+	cmd := exec.Command(configData.DockerExe+"/docker-compose.exe", option...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -1178,37 +1163,37 @@ func OpenExplorer(path string) {
 }
 func OpenDockerEnter(path string) {
 	configData := config.LoadConfig()
-	ioutil.WriteFile(configData.ConfigDir+"\\tmp\\tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"cmd /K "+path+"\",1,1\nSet oShell = Nothing"), 0777)
+	ioutil.WriteFile(configData.ConfigDir+"/tmp/tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"cmd /K "+path+"\",1,1\nSet oShell = Nothing"), 0777)
 
-	exec.Command("powershell", "START", configData.ConfigDir+"\\tmp\\tmp.vbs").Output()
+	exec.Command("powershell", "START", configData.ConfigDir+"/tmp/tmp.vbs").Output()
 
 }
 func OpenServerDockerEnter(path string) {
 	configData := config.LoadConfig()
-	ioutil.WriteFile(configData.ConfigDir+"\\tmp\\tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"cmd /K "+path+"\",1,1\nSet oShell = Nothing"), 0777)
+	ioutil.WriteFile(configData.ConfigDir+"/tmp/tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"cmd /K "+path+"\",1,1\nSet oShell = Nothing"), 0777)
 
-	exec.Command("powershell", "START", configData.ConfigDir+"\\tmp\\tmp.vbs").Output()
+	exec.Command("powershell", "START", configData.ConfigDir+"/tmp/tmp.vbs").Output()
 
 }
 func OpenServer(path string) {
 	configData := config.LoadConfig()
-	ioutil.WriteFile(configData.ConfigDir+"\\tmp\\tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"cmd /K "+path+"\",1,1\nSet oShell = Nothing"), 0777)
+	ioutil.WriteFile(configData.ConfigDir+"/tmp/tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"cmd /K "+path+"\",1,1\nSet oShell = Nothing"), 0777)
 
-	exec.Command("powershell", "START", configData.ConfigDir+"\\tmp\\tmp.vbs").Output()
+	exec.Command("powershell", "START", configData.ConfigDir+"/tmp/tmp.vbs").Output()
 
 }
 func OpenMachineSsh(path string) {
 	configData := config.LoadConfig()
-	ioutil.WriteFile(configData.ConfigDir+"\\tmp\\tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"cmd /K "+path+"\",1,1\nSet oShell = Nothing"), 0777)
+	ioutil.WriteFile(configData.ConfigDir+"/tmp/tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"cmd /K "+path+"\",1,1\nSet oShell = Nothing"), 0777)
 
-	exec.Command("powershell", "START", configData.ConfigDir+"\\tmp\\tmp.vbs").Output()
+	exec.Command("powershell", "START", configData.ConfigDir+"/tmp/tmp.vbs").Output()
 
 }
 func StartDocker() {
 	configData := config.LoadConfig()
-	ioutil.WriteFile(configData.ConfigDir+"\\tmp\\tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"\"\""+configData.DockerExe+"\\start.sh\"\"\""), 0777)
+	ioutil.WriteFile(configData.ConfigDir+"/tmp/tmp.vbs", []byte("Dim oShell\nSet oShell = WScript.CreateObject (\"WSCript.shell\")\noShell.run \"\"\""+configData.DockerExe+"/start.sh\"\"\""), 0777)
 
-	exec.Command("powershell", "START", configData.ConfigDir+"\\tmp\\tmp.vbs").Output()
+	exec.Command("powershell", "START", configData.ConfigDir+"/tmp/tmp.vbs").Output()
 }
 func CreateDocker(window *gotron.BrowserWindow) {
 	OutLog("■■■INPUT■■■", window)

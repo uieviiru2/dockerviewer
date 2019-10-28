@@ -37,9 +37,8 @@ ws.onopen = function(e) {
         } else {
             $(".level1").show();
         }
-
-
         if(data.machine && data.machine.length) {
+           
             $('#docker-machine').columns({data:data.machine,
                 schema: [
                     {"header":"DOCKER", "key":"DOCKER"},

@@ -40,7 +40,7 @@ func Use(window *gotron.BrowserWindow) {
 	window.On(&gotron.Event{Event: "index"}, func(bin []byte) {
 		//設定ファイルの存在チェック
 		userData, _ := user.Current()
-		if _, err := os.Stat(userData.HomeDir + "\\.docker.bin"); os.IsNotExist(err) {
+		if _, err := os.Stat(userData.HomeDir + "/.docker.bin"); os.IsNotExist(err) {
 			fmt.Println("can't open .docker.bin")
 			erroutput := jsonedit.Val("eventName", "index-config")
 			window.Send(&gotron.Event{Event: jsonedit.End(erroutput)})
@@ -50,8 +50,8 @@ func Use(window *gotron.BrowserWindow) {
 		configData := config.LoadConfig()
 		output := jsonedit.Val("eventName", "index")
 
-		path1 := configData.ConfigDir + "\\Dockerfile"
-		path2 := configData.ConfigDir + "\\docker-compose"
+		path1 := configData.ConfigDir + "/Dockerfile"
+		path2 := configData.ConfigDir + "/docker-compose"
 		var pl PathList
 		pl.Path1 = path1
 		pl.Path2 = path2

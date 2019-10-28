@@ -27,7 +27,7 @@ func Use(window *gotron.BrowserWindow) {
 
 		jDockerfiles := docker.DockerCompose(window)
 		output = jsonedit.Con(output, jDockerfiles)
-		path := configData.ConfigDir + "\\docker-compose"
+		path := configData.ConfigDir + "/docker-compose"
 		var up userPath
 		up.Path = path
 		bytes, _ := json.Marshal(up)
@@ -52,7 +52,7 @@ func Use(window *gotron.BrowserWindow) {
 		output := jsonedit.Val("eventName", "dockercompose-save")
 		jDockerfiles := docker.DockerCompose(window)
 		output = jsonedit.Con(output, jDockerfiles)
-		path := configData.ConfigDir + "\\docker-compose"
+		path := configData.ConfigDir + "/docker-compose"
 		var up userPath
 		up.Path = path
 		bytes, _ := json.Marshal(up)
@@ -74,7 +74,7 @@ func Use(window *gotron.BrowserWindow) {
 		output := jsonedit.Val("eventName", "dockercompose-test")
 		jDockerfiles := docker.DockerCompose(window)
 		output = jsonedit.Con(output, jDockerfiles)
-		path := configData.ConfigDir + "\\docker-compose"
+		path := configData.ConfigDir + "/docker-compose"
 		var up userPath
 		up.Path = path
 		bytes, _ := json.Marshal(up)
@@ -100,7 +100,7 @@ func Use(window *gotron.BrowserWindow) {
 		output := jsonedit.Val("eventName", "dockercompose-delete")
 		jDockerfiles := docker.DockerCompose(window)
 		output = jsonedit.Con(output, jDockerfiles)
-		path := configData.ConfigDir + "\\docker-compose"
+		path := configData.ConfigDir + "/docker-compose"
 		var up userPath
 		up.Path = path
 		bytes, _ := json.Marshal(up)

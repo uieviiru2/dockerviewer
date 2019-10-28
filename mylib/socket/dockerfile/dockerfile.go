@@ -27,7 +27,7 @@ func Use(window *gotron.BrowserWindow) {
 
 		jDockerfiles := docker.Dockerfiles(window)
 		output = jsonedit.Con(output, jDockerfiles)
-		path := configData.ConfigDir + "\\Dockerfile"
+		path := configData.ConfigDir + "/Dockerfile"
 		var up userPath
 		up.Path = path
 		bytes, _ := json.Marshal(up)
@@ -53,7 +53,7 @@ func Use(window *gotron.BrowserWindow) {
 
 		jDockerfiles := docker.Dockerfiles(window)
 		output = jsonedit.Con(output, jDockerfiles)
-		path := configData.ConfigDir + "\\Dockerfile"
+		path := configData.ConfigDir + "/Dockerfile"
 		var up userPath
 		up.Path = path
 		bytes, _ := json.Marshal(up)
@@ -75,7 +75,7 @@ func Use(window *gotron.BrowserWindow) {
 		output := jsonedit.Val("eventName", "dockerfile-test")
 		jDockerfiles := docker.Dockerfiles(window)
 		output = jsonedit.Con(output, jDockerfiles)
-		path := configData.ConfigDir + "\\Dockerfile"
+		path := configData.ConfigDir + "/Dockerfile"
 		var up userPath
 		up.Path = path
 		bytes, _ := json.Marshal(up)
@@ -100,7 +100,7 @@ func Use(window *gotron.BrowserWindow) {
 
 		jDockerfiles := docker.Dockerfiles(window)
 		output = jsonedit.Con(output, jDockerfiles)
-		path := configData.ConfigDir + "\\Dockerfile"
+		path := configData.ConfigDir + "/Dockerfile"
 		var up userPath
 		up.Path = path
 		bytes, _ := json.Marshal(up)

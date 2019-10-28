@@ -26,9 +26,9 @@ func Use(window *gotron.BrowserWindow) {
 		//fmt.Println(runtime.GOOS)
 		userData, _ := user.Current()
 
-		if _, err := os.Stat(userData.HomeDir + "\\.docker.bin"); os.IsNotExist(err) {
+		if _, err := os.Stat(userData.HomeDir + "/.docker.bin"); os.IsNotExist(err) {
 		} else {
-			f, err := os.Open(userData.HomeDir + "\\.docker.bin")
+			f, err := os.Open(userData.HomeDir + "/.docker.bin")
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -56,26 +56,26 @@ func Use(window *gotron.BrowserWindow) {
 		if err := json.Unmarshal(b, &d); err != nil {
 
 		}
-		if f, err := os.Stat(d.ConfigDir + "\\server"); os.IsNotExist(err) || !f.IsDir() {
-			os.Mkdir(d.ConfigDir+"\\server", 0777)
+		if f, err := os.Stat(d.ConfigDir + "/server"); os.IsNotExist(err) || !f.IsDir() {
+			os.Mkdir(d.ConfigDir+"/server", 0777)
 		}
-		if f, err := os.Stat(d.ConfigDir + "\\Dockerfile"); os.IsNotExist(err) || !f.IsDir() {
-			os.Mkdir(d.ConfigDir+"\\Dockerfile", 0777)
+		if f, err := os.Stat(d.ConfigDir + "/Dockerfile"); os.IsNotExist(err) || !f.IsDir() {
+			os.Mkdir(d.ConfigDir+"/Dockerfile", 0777)
 		}
-		if f, err := os.Stat(d.ConfigDir + "\\docker-compose"); os.IsNotExist(err) || !f.IsDir() {
-			os.Mkdir(d.ConfigDir+"\\docker-compose", 0777)
+		if f, err := os.Stat(d.ConfigDir + "/docker-compose"); os.IsNotExist(err) || !f.IsDir() {
+			os.Mkdir(d.ConfigDir+"/docker-compose", 0777)
 		}
-		if f, err := os.Stat(d.ConfigDir + "\\runinput"); os.IsNotExist(err) || !f.IsDir() {
-			os.Mkdir(d.ConfigDir+"\\runinput", 0777)
+		if f, err := os.Stat(d.ConfigDir + "/runinput"); os.IsNotExist(err) || !f.IsDir() {
+			os.Mkdir(d.ConfigDir+"/runinput", 0777)
 		}
-		if f, err := os.Stat(d.ConfigDir + "\\deployinput"); os.IsNotExist(err) || !f.IsDir() {
-			os.Mkdir(d.ConfigDir+"\\deployinput", 0777)
+		if f, err := os.Stat(d.ConfigDir + "/deployinput"); os.IsNotExist(err) || !f.IsDir() {
+			os.Mkdir(d.ConfigDir+"/deployinput", 0777)
 		}
-		if f, err := os.Stat(d.ConfigDir + "\\tmp"); os.IsNotExist(err) || !f.IsDir() {
-			os.Mkdir(d.ConfigDir+"\\tmp", 0777)
+		if f, err := os.Stat(d.ConfigDir + "/tmp"); os.IsNotExist(err) || !f.IsDir() {
+			os.Mkdir(d.ConfigDir+"/tmp", 0777)
 		}
 		userData, _ := user.Current()
-		f, err := os.Create(userData.HomeDir + "\\.docker.bin")
+		f, err := os.Create(userData.HomeDir + "/.docker.bin")
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -95,8 +95,8 @@ func Use(window *gotron.BrowserWindow) {
 func LoadConfig() ConfigStruct {
 
 	userData, _ := user.Current()
-	fmt.Println(userData.HomeDir + "\\.docker.bin")
-	f, err := os.Open(userData.HomeDir + "\\.docker.bin")
+	fmt.Println(userData.HomeDir + "/.docker.bin")
+	f, err := os.Open(userData.HomeDir + "/.docker.bin")
 	if err != nil {
 		log.Fatal(err)
 	}
