@@ -12,6 +12,7 @@ import (
 	"os/exec"
 	"os/user"
 	"regexp"
+	"runtime"
 	"strings"
 	"sync"
 
@@ -21,6 +22,13 @@ import (
 	"github.com/uieviiru2/mylib/jsonedit"
 	"github.com/uieviiru2/mylib/socket/config"
 )
+
+func IsWindows() bool {
+	if runtime.GOOS == "windows" {
+		return true
+	}
+	return false
+}
 
 func DockerMachineIp(name string) string {
 	output := ExecMachine("ip", name)
