@@ -45,6 +45,7 @@ func Dockerfiles(window *gotron.BrowserWindow) string {
 	}
 	files, err := ioutil.ReadDir(configData.ConfigDir + "/dockerfile")
 	if err != nil {
+		OutLog("Config error ->rm .docker.bin ", window)
 		panic(err)
 	}
 	firstFlg := true
@@ -161,6 +162,7 @@ func DockerCompose(window *gotron.BrowserWindow) string {
 	}
 	files, err := ioutil.ReadDir(configData.ConfigDir + "/docker-compose")
 	if err != nil {
+		OutLog("Config error ->rm .docker.bin ", window)
 		panic(err)
 	}
 	firstFlg := true
@@ -237,6 +239,7 @@ func Serverfiles(window *gotron.BrowserWindow) string {
 
 	files, err := ioutil.ReadDir(configData.ConfigDir + "/server")
 	if err != nil {
+		OutLog("Config error ->rm .docker.bin ", window)
 		panic(err)
 	}
 	firstFlg := true
