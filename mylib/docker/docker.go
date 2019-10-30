@@ -847,7 +847,60 @@ func Run(docker, name, dit, port, dirname, dirname2, dirnameA, dirnameA2, dirnam
 	userData, _ := user.Current()
 	Go("docker", userData.HomeDir+"/.docker/machine/machines/default/id_rsa", ip, cmd, window)
 }
+func RunMac(docker, name, dit, port, dirname, dirname2, dirnameA, dirnameA2, dirnameB, dirnameB2, dirnameC, dirnameC2, dirnameD, dirnameD2, option, option2 string, window *gotron.BrowserWindow) {
 
+	cmd := "run " + dit + " --name " + name
+	if dirname != "" {
+		cmd += " -v " + ChangeDockerPath(dirname) + ":/" + dirname2
+	}
+	if dirnameA != "" {
+		cmd += " -v " + ChangeDockerPath(dirnameA) + ":/" + dirnameA2
+	}
+	if dirnameB != "" {
+		cmd += " -v " + ChangeDockerPath(dirnameB) + ":/" + dirnameB2
+	}
+	if dirnameC != "" {
+		cmd += " -v " + ChangeDockerPath(dirnameC) + ":/" + dirnameC2
+	}
+	if dirnameD != "" {
+		cmd += " -v " + ChangeDockerPath(dirnameD) + ":/" + dirnameD2
+	}
+	if port != "" {
+		cmd += " -p " + port
+	}
+	if option != "" {
+		cmd += " " + option
+	}
+	cmd += " " + docker
+
+	if option2 != "" {
+		cmd += " " + option2
+	}
+	slice := strings.Split(cmd, " ")
+	OutLog("■■■INPUT■■■", window)
+	OutLog("docker "+cmd, window)
+	output, err := ExecCommand2(slice...)
+	if err != "" {
+		OutLog("■■■OUTPUT ERROR■■■", window)
+		OutLog(err, window)
+		return
+	}
+	OutLog("■■■OUTPUT■■■", window)
+	OutLog(output, window)
+
+	if dit == "-i" {
+		OutLog("■■■INPUT■■■", window)
+		OutLog("docker start "+name, window)
+		output2, err2 := ExecCommand2("start", name)
+		if err2 != "" {
+			OutLog("■■■OUTPUT ERROR■■■", window)
+			OutLog(err2, window)
+			return
+		}
+		OutLog("■■■OUTPUT■■■", window)
+		OutLog(output2, window)
+	}
+}
 func ExecCommand(option ...string) string {
 	fmt.Println(option)
 	configData := config.LoadConfig()
