@@ -1,13 +1,13 @@
     <section class="content-header">
-        <button name="docker-create" class="btn btn-default pull-right" onclick="machinecreate();">
+        <button name="docker-create" class="btn btn-default pull-right winonly" onclick="machinecreate();">
             docker-machine create --driver virtualbox default
         </button>
       <h1>
-        Dashbord 
+        Dashboard 
       </h1>
-      <button name="docker-start" onclick="machinestart()";>docker-quickstart</button>
+      <button class="winonly" name="docker-start" onclick="machinestart()";>docker-quickstart</button>
     </section>
-    <section class="content">
+    <section class="content winonly">
         <div class="box">
           <div class="box-header with-border">
             <h3 class="box-title">docker-machine ls</h3>

@@ -147,8 +147,9 @@ ws.onclose = function() { };
 
 //ページが読み込み完了した場合
 $(document).ready(function () {    
-
-
+    if(isMac()) {
+        $(".winonly").hide();
+    }
 });
 
 function machinereload(machine) {

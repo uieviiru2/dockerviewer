@@ -106,3 +106,9 @@ function include(filename, afterfunc) {
   function NNSH_decodeHTML(str) {
     return str .replace(/&lt;/g, '<') .replace(/&gt;/g, '>') .replace(/&quot;/g, '"') .replace(/&#039;/g, '\'') .replace(/&#044;/g, ',') .replace(/&amp;/g, '&');
   }
+  function isMac() {
+    var ua = navigator.userAgent.toLowerCase();
+    var isMac = ((ua.indexOf('mac') > -1) && (ua.indexOf('os') > -1)) && !((ua.indexOf('iphone') > -1) || (ua.indexOf('ipad') > -1) || (ua.indexOf('windows') > -1));
+    return isMac;
+  }
+
