@@ -68,7 +68,7 @@ func Use(window *gotron.BrowserWindow) {
 		fmt.Println(d.DirNameD2)
 		fmt.Println(d.Option)
 		if docker.IsWindows() {
-			docker.RunMac(d.Docker, d.Name, d.Dit, d.Port, d.DirName, d.DirName2, d.DirNameA, d.DirNameA2, d.DirNameB, d.DirNameB2, d.DirNameC, d.DirNameC2, d.DirNameD, d.DirNameD2, d.Option, d.Option2, window)
+			docker.Run(d.Docker, d.Name, d.Dit, d.Port, d.DirName, d.DirName2, d.DirNameA, d.DirNameA2, d.DirNameB, d.DirNameB2, d.DirNameC, d.DirNameC2, d.DirNameD, d.DirNameD2, d.Option, d.Option2, window)
 		} else {
 			docker.RunMac(d.Docker, d.Name, d.Dit, d.Port, d.DirName, d.DirName2, d.DirNameA, d.DirNameA2, d.DirNameB, d.DirNameB2, d.DirNameC, d.DirNameC2, d.DirNameD, d.DirNameD2, d.Option, d.Option2, window)
 		}
