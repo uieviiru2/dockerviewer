@@ -8,6 +8,7 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 	"os/exec"
 	"os/user"
@@ -737,7 +738,54 @@ func ServerDeploy(id, name, dit, pem, user, serverip, port, dirname, dirname2, d
 	Go(user, pem, serverip, cmd, window)
 
 }
+func RegistryDeploy(id, name, pem, user, serverip, port string, window *gotron.BrowserWindow) {
+	//専用ディレクトリ作成
+	Go(user, pem, serverip, "mkdir -p ~/dockerconfig", window)
+	//リモート作業
+	cmd := "\ndocker run -d --name " + name + " -p " + port + " " + id
+	Go(user, pem, serverip, cmd, window)
 
+}
+func SaveRegistryfile(name, json string, window *gotron.BrowserWindow) {
+	configData := config.LoadConfig()
+
+	if f, err := os.Stat(configData.ConfigDir + "/registry"); os.IsNotExist(err) || !f.IsDir() {
+		os.Mkdir(configData.ConfigDir+"/registry", 0777)
+	}
+	fmt.Println(configData.ConfigDir + "/registry/" + name)
+	file, err := os.Create(configData.ConfigDir + "/registry/" + name)
+	if err != nil {
+		// Openエラー処理
+	}
+	defer file.Close()
+	file.Write(([]byte)(json))
+	OutLog("■■■Save Registry File■■■", window)
+	OutLog(name, window)
+}
+func Registryfiles(window *gotron.BrowserWindow) string {
+	registryListJson := ""
+	configData := config.LoadConfig()
+	if configData.ConfigDir == "" {
+		return registryListJson
+	}
+	files, err := ioutil.ReadDir(configData.ConfigDir + "/registry")
+	if err != nil {
+		panic(err)
+	}
+	firstFlg := true
+
+	for _, file := range files {
+		if !firstFlg {
+			registryListJson += "," + FileRead(configData.ConfigDir+"/registry/"+file.Name())
+		} else {
+			registryListJson += FileRead(configData.ConfigDir + "/registry/" + file.Name())
+			firstFlg = false
+		}
+	}
+	OutLog("■■■Registry File■■■", window)
+	OutLog(registryListJson, window)
+	return jsonedit.List("registrylist", registryListJson)
+}
 func Remove(id string, window *gotron.BrowserWindow) {
 	OutLog("■■■INPUT■■■", window)
 	OutLog("docker stop "+id, window)
@@ -1288,4 +1336,24 @@ func CreateDocker(window *gotron.BrowserWindow) {
 	}
 	OutLog("■■■OUTPUT■■■", window)
 	OutLog(output, window)
+}
+func RegistryTag() string {
+
+	req, _ := http.NewRequest("GET", "https://registry.hub.docker.com/v1/repositories/registry/tags", nil)
+	client := new(http.Client)
+	resp, err := client.Do(req)
+	fmt.Println(err)
+	byteArray, _ := ioutil.ReadAll(resp.Body)
+	respStr := string(byteArray)
+	output := jsonedit.On("tags", respStr) // htmlをstringで取得
+	fmt.Println(output)
+	return output
+}
+func DeleteRegistryfile(name string, window *gotron.BrowserWindow) {
+	configData := config.LoadConfig()
+	if err := os.RemoveAll(configData.ConfigDir + "/registry/" + name); err != nil {
+		fmt.Println(err)
+	}
+	OutLog("■■■Delete Registryfile■■■", window)
+	OutLog(name, window)
 }

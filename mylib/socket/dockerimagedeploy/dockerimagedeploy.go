@@ -14,7 +14,7 @@ import (
 	"github.com/uieviiru2/mylib/docker"
 )
 
-type dockerDeploy struct {
+type DockerDeploy struct {
 	ID        string `json:"image_id"`
 	ServerIP  string `json:"server_ip"`
 	Name      string `json:"name"`
@@ -59,7 +59,7 @@ func Use(window *gotron.BrowserWindow) {
 		b := []byte(bin)
 		buf := bytes.NewBuffer(b)
 		fmt.Println(buf)
-		var d dockerDeploy
+		var d DockerDeploy
 		if err := json.Unmarshal(b, &d); err != nil {
 
 		}
@@ -77,7 +77,7 @@ func Use(window *gotron.BrowserWindow) {
 		//window.Send(&gotron.Event{Event: jsonedit.End(output)})
 	})
 	window.On(&gotron.Event{Event: "dockerimagedeploy-saveinput"}, func(bin []byte) {
-		var d dockerDeploy
+		var d DockerDeploy
 
 		b := []byte(bin)
 		//buf := bytes.NewBuffer(b)
@@ -111,7 +111,7 @@ func Use(window *gotron.BrowserWindow) {
 
 	})
 	window.On(&gotron.Event{Event: "dockerimagedeploy-load"}, func(bin []byte) {
-		var d dockerDeploy
+		var d DockerDeploy
 		b := []byte(bin)
 		buf := bytes.NewBuffer(b)
 		fmt.Println(buf)
@@ -127,7 +127,7 @@ func Use(window *gotron.BrowserWindow) {
 		window.Send(&gotron.Event{Event: jsonedit.End(output)})
 	})
 	window.On(&gotron.Event{Event: "dockerimagedeploy-delete"}, func(bin []byte) {
-		var d dockerDeploy
+		var d DockerDeploy
 		b := []byte(bin)
 		buf := bytes.NewBuffer(b)
 		fmt.Println(buf)
@@ -145,7 +145,7 @@ func Use(window *gotron.BrowserWindow) {
 	})
 }
 
-func makeRunStr(d dockerDeploy) string {
+func makeRunStr(d DockerDeploy) string {
 	cmd := "HOST:" + d.ServerIP + " docker run " + d.Dit + " --name " + d.Name
 	if d.DirName != "" {
 		cmd += " -v " + docker.ChangeDockerPath(d.DirName) + ":/" + d.DirName2

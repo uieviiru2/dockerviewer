@@ -12,6 +12,7 @@ import (
 	"github.com/uieviiru2/mylib/socket/dockerpull"
 	"github.com/uieviiru2/mylib/socket/dockerrun"
 	"github.com/uieviiru2/mylib/socket/index"
+	"github.com/uieviiru2/mylib/socket/registry"
 	"github.com/uieviiru2/mylib/socket/serverinspect"
 	"github.com/uieviiru2/mylib/socket/serverinspectimage"
 	"github.com/uieviiru2/mylib/socket/serverinspectps"
@@ -46,6 +47,7 @@ func main() {
 	dockerfile.Use(window)
 	dockercompose.Use(window)
 	dockerimagedeploy.Use(window)
+	registry.Use(window)
 	vultrrun.Use(window)
 	vultrdetail.Use(window)
 	config.Use(window)
